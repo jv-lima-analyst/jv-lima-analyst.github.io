@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>João Victor Lima · BI, Dados & IA</title>
+  <meta name="description" content="Portfólio de João Victor Lima: Power BI, SQL Server, Microsoft Fabric, automação e soluções com IA aplicadas a dados.">
+  <meta name="theme-color" content="#0a0c0b">
+
+  <!-- Open Graph: é o "card" que aparece quando o link é colado no LinkedIn ou WhatsApp -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="João Victor Lima · BI, Dados & IA">
+  <meta property="og:description" content="Power BI, SQL Server, Fabric e IA aplicada a dados.">
+  <!-- TODO: depois de publicar, use a URL COMPLETA da imagem (o LinkedIn não aceita caminho relativo) -->
+  <!-- <meta property="og:image" content="https://SEU-USUARIO.github.io/portfolio/assets/og.png"> -->
+
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Roda ANTES da página aparecer: aplica o tema salvo e evita o "piscar" claro→escuro -->
+  <script>
+    (function () {
+      var tema;
+      try { tema = localStorage.getItem('tema'); } catch (e) {}
+      if (!tema) tema = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      document.documentElement.dataset.theme = tema;
+      document.documentElement.classList.add('js');
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <div class="bg" aria-hidden="true"></div>
+
+  <!-- ===================== CABEÇALHO ===================== -->
+  <header class="header">
+    <div class="container header__inner">
+      <a class="logo" href="#inicio" aria-label="Voltar ao início">
+        <span class="logo__mark">jv</span><span class="logo__text">.lima</span>
+      </a>
+
+      <nav class="nav" id="nav" aria-label="Principal">
+        <a href="#sobre">Sobre</a>
+        <a href="#stack">Stack</a>
+        <a href="#projetos">Projetos</a>
+        <a href="#experiencia">Experiência</a>
+        <a href="#formacao">Formação</a>
+        <a href="#contato">Contato</a>
+      </nav>
+
+      <div class="header__acoes">
+        <button class="icon-btn" id="btn-tema" type="button" aria-label="Alternar tema claro/escuro">
+          <span class="so-escuro" data-icon="sol"></span>
+          <span class="so-claro" data-icon="lua"></span>
+        </button>
+        <button class="icon-btn menu-btn" id="btn-menu" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav">
+          <span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="conteudo">
+
+    <!-- ===================== HERO ===================== -->
+    <section class="hero" id="inicio">
+      <div class="container hero__grid">
+        <div class="hero__texto">
+          <p class="badge"><span class="badge__dot"></span> Disponível para projetos e oportunidades</p>
+          <p class="hero__kicker mono">&gt; joão victor lima · manaus/am</p>
+          <h1 class="hero__titulo">
+            Transformo dados em <span class="destaque">decisões</span> e rotinas em <span class="destaque">automação</span>.
+          </h1>
+          <p class="hero__sub">
+            Analista de BI com experiência prática em Power BI, SQL Server e integrações via API.
+            Hoje expandindo para <strong>Microsoft Fabric</strong> e soluções com <strong>IA aplicada a dados</strong>.
+          </p>
+          <div class="hero__ctas">
+            <a class="btn btn--primary" href="#projetos">Ver projetos <span data-icon="seta"></span></a>
+            <a class="btn btn--ghost" href="assets/curriculo.pdf" download="Curriculo-Joao-Victor-Lima.pdf">Baixar currículo <span data-icon="download"></span></a>
+          </div>
+          <ul class="social" id="hero-social" aria-label="Redes sociais"></ul>
+        </div>
+
+        <!-- "Terminal" com uma query que descreve o perfil — o JS digita o código -->
+        <div class="terminal" role="img" aria-label="Consulta SQL que retorna o perfil: João Victor Lima, foco em BI, dados e IA">
+          <div class="terminal__barra">
+            <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="terminal__titulo mono">perfil.sql · SQL Server</span>
+          </div>
+          <pre class="terminal__codigo mono"><code id="sql">-- quem é o João?
+SELECT nome, foco, stack
+FROM   portfolio.profissional
+WHERE  paixao = 'dados + IA';</code><span class="cursor" aria-hidden="true"></span></pre>
+          <div class="terminal__resultado" id="sql-resultado">
+            <table>
+              <thead><tr><th>nome</th><th>foco</th><th>stack</th></tr></thead>
+              <tbody><tr><td>João Victor Lima</td><td>BI · Dados · IA</td><td>Power BI, SQL, Fabric, Python</td></tr></tbody>
+            </table>
+            <p class="terminal__status mono"><span class="ok">✓</span> 1 linha retornada · 0,02s</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="marquee" aria-hidden="true"><div class="marquee__trilho" id="marquee"></div></div>
+    </section>
+
+    <!-- ===================== KPIs ===================== -->
+    <section class="secao secao--compacta" id="numeros" aria-label="Em números">
+      <div class="container">
+        <div class="kpis" id="kpis"></div>
+      </div>
+    </section>
+
+    <!-- ===================== SOBRE ===================== -->
+    <section class="secao" id="sobre">
+      <div class="container sobre">
+        <div class="sobre__foto reveal">
+          <div class="foto">
+            <span class="foto__iniciais" aria-hidden="true">JV</span>
+            <!-- <picture> escolhe a imagem pelo tamanho da tela:
+                 até 960px usa o recorte quadrado do rosto, acima disso o retrato vertical.
+                 Se a imagem não carregar, aparecem as iniciais. -->
+            <picture>
+              <source media="(max-width: 960px)" srcset="assets/foto-avatar.jpg">
+              <img src="assets/foto.jpg" alt="Foto de João Victor Lima" width="720" height="900" onerror="this.closest('picture').remove()">
+            </picture>
+          </div>
+          <div class="foto__info">
+            <strong>João Victor Lima</strong>
+            <span>BI · Dados · IA · Manaus/AM</span>
+          </div>
+        </div>
+
+        <div class="sobre__texto">
+          <header class="secao__head reveal">
+            <p class="eyebrow">01 / sobre</p>
+            <h2>Dados, automação e IA, sem perder o negócio de vista.</h2>
+          </header>
+          <div class="reveal">
+            <p>
+              Sou analista de BI em Manaus e estou no último período de Análise e Desenvolvimento de Sistemas.
+              Hoje desenvolvo e mantenho os painéis de <strong>Frota, Sinistro, Estoque, RH e Movimentação de Veículos</strong>
+              da Reche.co, conectados a um datamart em SQL Server.
+            </p>
+            <p>
+              Gosto de entender o problema antes de abrir o Power BI: quem vai usar, que decisão precisa tomar e de onde vem o dado.
+              A partir daí eu modelo, automatizo e, quando faz sentido, coloco IA no caminho.
+            </p>
+            <p>
+              Também gosto de apoiar o time. Acredito que, quando todo mundo entende os dados, todo mundo entrega melhor.
+            </p>
+            <blockquote class="citacao">
+              Uso IA como copiloto para ir mais rápido, mas entendo, testo e assumo cada linha que entrego.
+            </blockquote>
+          </div>
+
+          <ol class="passos">
+            <li class="card passo reveal">
+              <span class="passo__num mono">01</span>
+              <h3>Entender</h3>
+              <p>Converso com a área e mapeio a decisão que o painel precisa apoiar e as fontes de dados envolvidas.</p>
+            </li>
+            <li class="card passo reveal" style="--delay:80ms">
+              <span class="passo__num mono">02</span>
+              <h3>Modelar & construir</h3>
+              <p>SQL, modelagem, Power Query e DAX. Protótipo no Figma antes de construir o visual.</p>
+            </li>
+            <li class="card passo reveal" style="--delay:160ms">
+              <span class="passo__num mono">03</span>
+              <h3>Automatizar & evoluir</h3>
+              <p>Integrações via API, atualização automática e IA para tirar atrito de quem consome os dados.</p>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== STACK ===================== -->
+    <section class="secao" id="stack">
+      <div class="container">
+        <header class="secao__head reveal">
+          <p class="eyebrow">02 / stack</p>
+          <h2>Ferramentas do dia a dia</h2>
+          <p>O que estou aprendendo agora aparece marcado como <span class="tag-estudo">estudando</span>. Transparência também faz parte.</p>
+        </header>
+        <div class="skills" id="skills"></div>
+      </div>
+    </section>
+
+    <!-- ===================== PROJETOS ===================== -->
+    <section class="secao" id="projetos">
+      <div class="container">
+        <header class="secao__head reveal">
+          <p class="eyebrow">03 / projetos</p>
+          <h2>Projetos & cases</h2>
+          <p>Vários projetos são corporativos. Neles eu mostro o problema, a solução e a arquitetura sem expor dados da empresa.</p>
+        </header>
+        <div class="filtros" id="filtros" role="group" aria-label="Filtrar projetos por categoria"></div>
+        <div class="projetos" id="projetos-grid"></div>
+      </div>
+    </section>
+
+    <!-- ===================== EXPERIÊNCIA ===================== -->
+    <section class="secao" id="experiencia">
+      <div class="container">
+        <header class="secao__head reveal">
+          <p class="eyebrow">04 / experiência</p>
+          <h2>Onde já coloquei a mão na massa</h2>
+        </header>
+        <div class="timeline" id="timeline"></div>
+      </div>
+    </section>
+
+    <!-- ===================== FORMAÇÃO ===================== -->
+    <section class="secao" id="formacao">
+      <div class="container">
+        <header class="secao__head reveal">
+          <p class="eyebrow">05 / formação</p>
+          <h2>Formação & aprendizado contínuo</h2>
+          <p>Graduação em andamento e uma trilha constante de cursos, porque dados e IA mudam toda semana.</p>
+        </header>
+        <div class="formacao">
+          <div class="card bloco reveal">
+            <h3 class="card__titulo"><span data-icon="capelo"></span> Educação</h3>
+            <ul class="edu-lista" id="educacao"></ul>
+            <h3 class="card__titulo"><span data-icon="globo"></span> Idiomas</h3>
+            <ul class="edu-lista" id="idiomas"></ul>
+          </div>
+          <div class="card bloco certs reveal" style="--delay:100ms">
+            <h3 class="card__titulo"><span data-icon="medalha"></span> Certificados</h3>
+            <div id="certificados"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CONTATO ===================== -->
+    <section class="secao" id="contato">
+      <div class="container">
+        <div class="card contato reveal">
+          <p class="eyebrow eyebrow--centro">06 / contato</p>
+          <h2>Bora transformar dados em <span class="destaque">decisão</span>?</h2>
+          <p>Estou aberto a oportunidades em BI, dados e IA, e sempre disposto a trocar ideia sobre um projeto.</p>
+          <div class="contato__acoes">
+            <a class="btn btn--primary" id="btn-email" href="mailto:joao.vsanto23@gmail.com">
+              <span data-icon="email"></span> <span id="email-texto">joao.vsanto23@gmail.com</span>
+            </a>
+            <a class="btn btn--ghost" id="btn-whatsapp" href="https://wa.me/5592988096946" target="_blank" rel="noopener">
+              <span data-icon="whatsapp"></span> <span id="telefone-texto">(92) 98809-6946</span>
+            </a>
+            <button class="btn btn--ghost" id="btn-copiar" type="button">
+              <span data-icon="copiar"></span> <span class="rotulo">Copiar e-mail</span>
+            </button>
+          </div>
+          <ul class="social" id="contato-social" aria-label="Redes sociais"></ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>© <span id="ano">2026</span> João Victor Lima · Manaus/AM</p>
+      <p class="mono">Feito à mão com HTML, CSS e JS, com IA como copiloto · atualizado em <span id="atualizado"></span></p>
+    </div>
+  </footer>
+
+  <!-- Modal de detalhes do projeto (<dialog> é nativo do HTML: já trata ESC e foco) -->
+  <dialog class="modal" id="modal-projeto" aria-labelledby="modal-titulo">
+    <div class="modal__caixa">
+      <button class="icon-btn modal__fechar" type="button" aria-label="Fechar" data-fechar>
+        <span data-icon="fechar"></span>
+      </button>
+      <div class="modal__conteudo"></div>
+    </div>
+  </dialog>
+
+  <!-- A ordem importa: primeiro os dados, depois o código que usa os dados -->
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
