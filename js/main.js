@@ -414,6 +414,18 @@
     }, { passive: true });
   }
 
+  /* ---------- Sempre abrir no topo ---------- */
+  // Clicar no menu deixa o endereço como ".../#projetos". Ao reabrir ou compartilhar
+  // esse link (principalmente no celular), o navegador pulava direto para a seção.
+  // Aqui limpamos o "#..." do endereço e voltamos para o início.
+  function iniciarNoTopo() {
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+    const subir = () => scrollTo({ top: 0, behavior: 'instant' });
+    subir();
+    addEventListener('load', subir, { once: true }); // o navegador pode pular para a âncora só depois de carregar
+  }
+
   /* ---------- Rodapé ---------- */
   function renderRodape() {
     $('#ano').textContent = new Date().getFullYear();
@@ -422,6 +434,7 @@
 
   /* ========================================================= */
   function iniciar() {
+    iniciarNoTopo();
     hidratarIcones();
     iniciarTema();
     iniciarHeader();

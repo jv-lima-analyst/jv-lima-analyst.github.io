@@ -22,7 +22,7 @@ window.PORTFOLIO = {
   // Deixe vazio ('') o que não quiser exibir — o link some sozinho.
   contato: {
     email: 'joao.vsanto23@gmail.com',
-    linkedin: '',   // TODO: ex. 'https://www.linkedin.com/in/seu-usuario'
+    linkedin: 'https://www.linkedin.com/in/jo%C3%A3o-victor-lima-santos', // "%C3%A3" é o "ã" codificado para URL
     github: 'https://github.com/jv-lima-analyst',
     telefone: '(92) 98809-6946',  // como aparece escrito no site
     whatsapp: '5592988096946',    // só números, com 55 + DDD (usado no link wa.me)
